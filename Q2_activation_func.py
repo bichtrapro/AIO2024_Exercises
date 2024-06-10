@@ -1,25 +1,27 @@
 import math
+
 def exercise2():
     x = input('Input x: ')
     if not is_number(x):
         print(f"{x} is not a number")
         return
     act_name = input('Enter activation function name:')
-    #cast x to float
-    result = cal_activation_func(x,act_name)
+    
+    # Chuyển đổi x sang kiểu float
+    x = float(x)
+    result = cal_activation_func(x, act_name)
 
     if result is None:
         print(f"{act_name} is not supported")
     else:
-        print(f"{act_name} + string(x) + string(result)")
+        print(f"{act_name}({x}) = {result}")
 
 def is_number(x):
     try:
-        float(x) #type -casting the string to float
+        float(x) # Chuyển đổi kiểu từ string sang float
     except ValueError:
         return False
     return True
-
 
 def cal_activation_func(x, act_name):
     if act_name == 'sigmoid':
@@ -33,7 +35,7 @@ def cal_activation_func(x, act_name):
         else:
             return alpha * (math.exp(x) - 1)
     else:
-        raise ValueError("Hàm kích hoạt không hợp lệ. Chỉ hỗ trợ 'sigmoid', 'relu' và 'elu'.")
+        return None
 
-if __name__=="main":
+if __name__ == "__main__":
     exercise2()
